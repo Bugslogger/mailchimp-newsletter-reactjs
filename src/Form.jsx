@@ -27,7 +27,7 @@ const Form = ({ submit }) => {
   };
 
   return (
-    <div className="d-flex justify-content-center align-items-center flex-column mb-3">
+    <div className="d-flex mx-auto justify-content-center align-items-center flex-column mb-3">
       <input
         onChange={(e) => setemail(e.target.value)}
         type="text"
