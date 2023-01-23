@@ -3,10 +3,28 @@ import { ToastContainer, toast } from "react-toastify";
 import "./App.css";
 import "react-toastify/dist/ReactToastify.css";
 import Form from "./Form";
+import { useState } from "react";
 
 function App() {
-  const url =
-    "https://gmail.us14.list-manage.com/subscribe/post?u=ad7cf24c916c1cd937b1700de&amp;id=cb5d887614&amp;f_id=001b95e0f0";
+  const [url, seturl] = useState("");
+
+  function Checkurl(subscribe, email) {
+    if (url) {
+      subscribe(email);
+      return;
+    }
+
+    toast.error("please enter your mailchimp url!", {
+      position: "top-right",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "dark",
+    });
+  }
 
   return (
     <div
@@ -33,7 +51,10 @@ function App() {
           url={url}
           render={({ subscribe, status, message }) => (
             <>
-              <Form submit={(email) => subscribe(email)} />
+              <Form
+                submit={(email) => Checkurl(subscribe, email)}
+                seturl={seturl}
+              />
               {status === "success" &&
                 toast.success("Subscribed!", {
                   position: "top-right",

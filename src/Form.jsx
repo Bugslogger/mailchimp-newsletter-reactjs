@@ -1,7 +1,7 @@
 import { toast } from "react-toastify";
 import React, { useState } from "react";
 
-const Form = ({ submit }) => {
+const Form = ({ submit, seturl }) => {
   const [email, setemail] = useState("");
   const testEmail = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
 
@@ -28,6 +28,13 @@ const Form = ({ submit }) => {
 
   return (
     <div className="d-flex mx-auto justify-content-center align-items-center flex-column mb-3">
+      <input
+        onChange={(e) => seturl(e.target.value)}
+        type="text"
+        style={{ width: "350px", height: "38px" }}
+        className="my-3 border border-warming"
+        placeholder="Enter mailchimp url here.."
+      />
       <input
         onChange={(e) => setemail(e.target.value)}
         type="text"
